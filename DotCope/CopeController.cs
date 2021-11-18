@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DotCope.Coping;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DotCope
 {

@@ -6,18 +6,18 @@ using SixLabors.ImageSharp.Processing;
 using System.Net.Http;
 using System.Text;
 
-namespace DotCope
+namespace DotCope.Coping
 {
     public class CopeService
     {
         private readonly Random _random = new Random();
-        private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly string webFilePath;
 
         private static string[] allWords;
 
-        public CopeService(IWebHostEnvironment webHostEnvironment)
+        public CopeService(string webFilePath)
         {
-            this.webHostEnvironment = webHostEnvironment;
+            this.webFilePath = webFilePath;
         }
 
         public async Task<Stream> CreateRandomCope()
@@ -43,10 +43,11 @@ namespace DotCope
 
         private async Task<Stream> GenerateImage(string text)
         {
-            Image image = Image.Load(Path.Combine(webHostEnvironment.WebRootPath, "cope.gif"));
+            Image image = Image.Load(Path.Combine(webFilePath, "cope.gif"));
 
             FontCollection coll = new FontCollection();
-            FontFamily fam = coll.Install(Path.Combine(webHostEnvironment.WebRootPath, "font.ttf"));
+
+            FontFamily fam = coll.Install(Path.Combine(webFilePath, "font.ttf"));
 
             TextOptions options = new TextOptions()
             {
@@ -91,7 +92,7 @@ namespace DotCope
 
         private async Task GatherWords()
         {
-            var wordFile = File.OpenText(Path.Combine(webHostEnvironment.WebRootPath, "words.txt"));
+            var wordFile = File.OpenText(Path.Combine(webFilePath, "words.txt"));
             var inStr = await wordFile.ReadToEndAsync();
             string[] all = inStr.Split("\n");
             allWords = all;
