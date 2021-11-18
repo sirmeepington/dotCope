@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotCope", "DotCope\DotCope.csproj", "{04DC69CD-637C-4DE7-B156-8A0D4FFCF52D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04DC69CD-637C-4DE7-B156-8A0D4FFCF52D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04DC69CD-637C-4DE7-B156-8A0D4FFCF52D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04DC69CD-637C-4DE7-B156-8A0D4FFCF52D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04DC69CD-637C-4DE7-B156-8A0D4FFCF52D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {06CC99A8-8A50-4615-B70D-C5E1AC6429C5}
+	EndGlobalSection
+EndGlobal
