@@ -1,4 +1,3 @@
-using DotCope;
 using DotCope.Coping;
 
 var builder = WebApplication.CreateBuilder(args);
