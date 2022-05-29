@@ -20,5 +20,13 @@ namespace DotCope
 
         [HttpGet("/{seed}")]
         public async Task<IActionResult> CopeSeeded(int seed) => new FileStreamResult(await _copeService.CreateRandomCope(seed), "image/gif");
+
+        [HttpGet("/{seed}/dl")]
+        public async Task<IActionResult> DownloadCope(int seed)
+        {
+            Response.Headers.Add("Content-Disposition", $"attachment; filename=cope_{seed}.gif");
+            return await CopeSeeded(seed);
+        }
+
     }
 }
