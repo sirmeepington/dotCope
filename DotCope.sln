@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotCope", "DotCope\DotCope.csproj", "{04DC69CD-637C-4DE7-B156-8A0D4FFCF52D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotCope.Coping", "DotCope.Coping\DotCope.Coping.csproj", "{8387A0AC-C10C-4B85-91E3-1847C7B3EC62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotCope.Coping", "DotCope.Coping\DotCope.Coping.csproj", "{8387A0AC-C10C-4B85-91E3-1847C7B3EC62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
