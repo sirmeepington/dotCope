@@ -1,5 +1,6 @@
 ﻿using DotCope.Coping;
 using Microsoft.AspNetCore.Mvc;
+using Sentry;
 
 namespace DotCope
 {
@@ -9,23 +10,40 @@ namespace DotCope
     {
         private readonly CopeService _copeService;
         private static readonly Random _random = new();
+        private readonly IHub _sentryHub;
 
-        public CopeController(CopeService copeService)
+        public CopeController(CopeService copeService, IHub sentryHub)
         {
             _copeService = copeService;
+            _sentryHub = sentryHub;
         }
 
         [HttpGet]
-        public IActionResult Cope() => Redirect(_random.Next().ToString());
+        public IActionResult Cope()
+        {
+            var span = _sentryHub.GetSpan()?.StartChild("pre-seed redirect");
+            var result = Redirect(_random.Next().ToString());
+            span?.Finish(SpanStatus.Ok);
+            return result;
+        }
 
         [HttpGet("/{seed}")]
-        public async Task<IActionResult> CopeSeeded(int seed) => new FileStreamResult(await _copeService.CreateRandomCope(seed), "image/gif");
+        public async Task<IActionResult> CopeSeeded(int seed)
+        {
+            var span = _sentryHub.GetSpan()?.StartChild("seeded generation");
+            var result = new FileStreamResult(await _copeService.CreateRandomCope(seed), "video/gif");
+            span?.Finish(SpanStatus.Ok);
+            return result;
+        }
 
         [HttpGet("/{seed}/dl")]
         public async Task<IActionResult> DownloadCope(int seed)
         {
+            var span = _sentryHub.GetSpan()?.StartChild("seeded download");
             Response.Headers.Add("Content-Disposition", $"attachment; filename=cope_{seed}.gif");
-            return await CopeSeeded(seed);
+            var result = await CopeSeeded(seed);
+            span?.Finish(SpanStatus.Ok);
+            return result;
         }
 
     }
