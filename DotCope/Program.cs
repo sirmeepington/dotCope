@@ -16,6 +16,9 @@ builder.WebHost.UseSentry(o =>
 var app = builder.Build();
 
 app.UseRouting();
+
+app.UseSentryTracing();
+
 app.UseEndpoints(opt =>
 {
     opt.MapDefaultControllerRoute();
