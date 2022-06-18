@@ -1,10 +1,17 @@
-using DotCope;
 using DotCope.Coping;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<CopeService>(svc => new CopeService(svc.GetRequiredService<IWebHostEnvironment>().WebRootPath));
+builder.Configuration.AddEnvironmentVariables();
+builder.Services.AddSingleton(svc => new CopeService(svc.GetRequiredService<IWebHostEnvironment>().WebRootPath));
 builder.Services.AddControllers();
+
+builder.WebHost.UseSentry(o =>
+{
+    o.Dsn = builder.Configuration.GetValue<string>("SentryDsn");
+    o.TracesSampleRate = 1.0;
+    o.Debug = builder.Environment.IsDevelopment();
+});
 
 var app = builder.Build();
 
