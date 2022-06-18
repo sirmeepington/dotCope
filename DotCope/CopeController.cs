@@ -31,7 +31,7 @@ namespace DotCope
         public async Task<IActionResult> CopeSeeded(int seed)
         {
             var span = _sentryHub.GetSpan()?.StartChild("seeded generation");
-            var result = new FileStreamResult(await _copeService.CreateRandomCope(seed), "video/gif");
+            var result = new FileStreamResult(await _copeService.CreateRandomCope(seed), "image/gif");
             span?.Finish(SpanStatus.Ok);
             return result;
         }
